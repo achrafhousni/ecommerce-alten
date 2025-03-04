@@ -65,7 +65,7 @@
    import { useCartStore } from '@/stores/cartStore';
     
    const cartStore = useCartStore();
-   const isOutlined = ref(true);
+ 
    
     
    const cartItems = computed(() => cartStore.items);

@@ -11,7 +11,6 @@ export const useProductStore = defineStore("product", () => {
 
     const response = await fetch('/products.json')
     const returnedProducts: Product[] = await response.json()
-    console.log("returnedProducts", returnedProducts)
     products.value = returnedProducts
     return returnedProducts
   }

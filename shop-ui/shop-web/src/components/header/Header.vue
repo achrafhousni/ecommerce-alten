@@ -1,7 +1,5 @@
 <template>
-    <!--Im lookung for addresse to get a secure logo from vue 3 HERE :-->
-    
-     
+
      <header class="fixed w-full top-0 left-0 z-50 shadow-md bg-white h-16 border-b">
         <div class="flex items-center justify-between px-6 h-full">
             <div class="flex items-center gap-4">
@@ -31,15 +29,11 @@
 
 <script setup lang="ts">
 import { useCartStore } from '@/stores/cartStore';
-import { Button } from 'primevue';
 import { computed, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
- // afficher  le nombre d items ici pour le badge
     
     const cartStore = useCartStore();
     const cartItems = computed(() => cartStore.items.length);
-
-    console.log("cart items :",cartItems.value);
 
 </script>
