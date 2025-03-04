@@ -1,13 +1,13 @@
 # ALTEN SHOP API
 
-## build the project
+#### build the project
 ```sh
 mvn clean install
 
 ```
 
 
-#### Launch the back with :
+#### launch the project:
 
 ```sh
 mvn spring-boot:run
