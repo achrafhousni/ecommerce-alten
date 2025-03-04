@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "f7c66ab6-68c2-48b3-8759-14483bdf6a8c",
+		"name": "SHOP_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7894268"
+	},
+	"item": [
+		{
+			"name": "WISHLIST",
+			"item": [
+				{
+					"name": "Create wish",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/wishlist",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List wishs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/wishlist",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"wishlist"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code >= 200 && pm.response.code <= 299) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var token = jsonData.data.access_token;\r",
+									"     pm.environment.set('bearer_token', token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\": \"{{user}}\",\r\n\"password\": \"{{password}}\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/token",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Account",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"userName\":\"admin\",\r\n\"password\":\"admin123\",\r\n\"firstName\":\"admin\",\r\n\"email\":\"admin@admin.com\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/user/account",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"user",
+								"account"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PRODUCT",
+			"item": [
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"code\": \"P004\",\r\n  \"name\": \"PC-NVAND\",\r\n  \"description\": \"PC Portabele avec 32 GB en RAM\",\r\n  \"image\": \"dell.jpg\",\r\n  \"category\": \"Electronics\",\r\n  \"price\": 9929.99,\r\n  \"quantity\": 100,\r\n  \"internalReference\": \"SM-P002\",\r\n  \"shellId\": 1,\r\n  \"inventoryStatus\": \"INSTOCK\",\r\n  \"rating\": 5,\r\n  \"createdAt\": 1709371074000,\r\n  \"updatedAt\": 1709371074000\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/product",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product?page=0&size=10",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"price\": 1233.99,\r\n  \"quantity\": 80\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/product/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Product",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 4,\r\n  \"code\": \"P004\",\r\n   \"name\": \"PC-NVAND\",\r\n  \"description\": \"PC Portabele avec 32 GB en RAM\",\r\n  \"image\": \"dell.jpg\",\r\n  \"category\": \"Electronics\",\r\n  \"price\": 16000.99,\r\n  \"quantity\": 100,\r\n  \"internalReference\": \"PM-3000\",\r\n  \"shellId\": 1,\r\n  \"inventoryStatus\": \"INSTOCK\",\r\n  \"rating\": 5,\r\n  \"createdAt\": 1709371074000,\r\n  \"updatedAt\": 1709371074000\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/product/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{bearer_token}}",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "{{content_accept}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/product/111",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"product",
+								"111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
