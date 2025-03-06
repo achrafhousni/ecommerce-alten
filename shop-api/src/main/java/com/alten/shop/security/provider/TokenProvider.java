@@ -71,9 +71,12 @@ public class TokenProvider {
     }
 
 
-    
-    public Authentication getAuthentication(String email, HttpServletRequest request) {
-        UsernamePasswordAuthenticationToken userPasswordAuthToken = new UsernamePasswordAuthenticationToken(userService.getUserByEmail(email),null);
+    public List<GrantedAuthority>getAuthorities(String token) {
+        String[] claims = getClaimsFromToken(token);
+        return Arrays.stream(claims).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+    }
+    public Authentication getAuthentication(String email,List<GrantedAuthority> authorities, HttpServletRequest request) {
+        UsernamePasswordAuthenticationToken userPasswordAuthToken = new UsernamePasswordAuthenticationToken(userService.getUserByEmail(email),null,authorities);
         userPasswordAuthToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         return userPasswordAuthToken;
     }
