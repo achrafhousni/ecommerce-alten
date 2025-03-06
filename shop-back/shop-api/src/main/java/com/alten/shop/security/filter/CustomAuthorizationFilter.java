@@ -46,9 +46,8 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
 			String token = getToken(request);
             String email=getUserEmail(request);
 			if (tokenProvider.isTokenValid(email, token)) {
-				List<GrantedAuthority> authorities = tokenProvider.getAuthorities(token);
 
-				Authentication authentication = tokenProvider.getAuthentication(email, authorities,
+				Authentication authentication = tokenProvider.getAuthentication(email,
 						request);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
 

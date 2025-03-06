@@ -1,5 +1,6 @@
 package com.alten.shop.domain.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
@@ -19,6 +20,6 @@ public class UserDTO {
     @Email(message = "Invalid email. Please enter a valid email address")
     private String email;
     @NotEmpty(message = "Password cannot be empty")
-    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 }

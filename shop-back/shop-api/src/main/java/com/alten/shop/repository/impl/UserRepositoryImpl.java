@@ -57,7 +57,7 @@ public class UserRepositoryImpl implements UserRepository<User>,UserDetailsServi
 			throw new ApiException("No User found by email: " + email);
 		} catch (Exception exception) {
 			log.error(exception.getMessage());
-			throw new ApiException("An error occurred. Please try again.");
+			throw new ApiException(exception.getMessage());
 		}
 	}
 

@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active:
+      - ${ACTIVE_PROFILE:local}
+      #autoconfigure:
+      #exclude:
+      # - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+  application:
+    name: shop
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+      format_sql: true
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DATABASE}
+    username: ${POSTGRES_USERNAME}
+    password: ${POSTGRES_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+server:
+  port: ${CONTAINER_PORT:8081}
+
+jwt:
+  secret: ${JWT_SECRET}

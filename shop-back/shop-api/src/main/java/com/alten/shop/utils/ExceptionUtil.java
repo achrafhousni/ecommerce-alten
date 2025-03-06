@@ -8,10 +8,13 @@ import com.alten.shop.domain.HttpResponse;
 import com.alten.shop.exception.ApiException;
 import com.auth0.jwt.exceptions.InvalidClaimException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.authentication.LockedException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,8 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ExceptionUtil {
  	public static void processError(HttpServletRequest request, HttpServletResponse response, Exception exception) {
-        if(exception instanceof ApiException || exception instanceof DisabledException || exception instanceof LockedException ||
-                exception instanceof BadCredentialsException || exception instanceof InvalidClaimException) {
+        if(exception instanceof ApiException || exception instanceof EmptyResultDataAccessException ||
+                exception instanceof BadCredentialsException || exception instanceof InvalidClaimException || exception instanceof InternalAuthenticationServiceException) {
 
             HttpResponse httpResponse = getHttpResponse(response, exception.getMessage(), HttpStatus
             	.BAD_REQUEST);
