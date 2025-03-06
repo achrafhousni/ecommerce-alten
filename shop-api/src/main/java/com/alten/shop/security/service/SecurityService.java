@@ -1,6 +1,7 @@
 package com.alten.shop.security.service;
 
 import com.alten.shop.domain.dto.UserDTO;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,8 @@ import java.util.Objects;
 
 @Service
 public class SecurityService {
-
+    @Value("${admin.email}")
+    private String adressEmail;
 
     public boolean isAdmin(Authentication authentication) {
 
@@ -17,7 +19,7 @@ public class SecurityService {
         }
         Object principal = authentication.getPrincipal();
         if (principal instanceof UserDTO user) {
-            return "admin@admin.com".equalsIgnoreCase(user.getEmail());
+            return adressEmail.equalsIgnoreCase(user.getEmail());
         }
 
         return  false;
