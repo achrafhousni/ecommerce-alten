@@ -52,7 +52,7 @@ const resolver = ref(zodResolver(
 
 const onFormSubmit = ({ valid }: { valid: boolean })  => {
   if (valid) {
-    toast.add({ severity: 'success', summary: 'Demande de contact envoyée avec succès', life: 3000 });
+    toast.add({ severity: 'success', summary: 'Contact request sent successfully', life: 3000 });
   }
 };
 </script>
