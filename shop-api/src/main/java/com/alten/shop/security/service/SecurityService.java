@@ -9,6 +9,7 @@ import java.util.Objects;
 @Service
 public class SecurityService {
 
+
     public boolean isAdmin(Authentication authentication) {
 
         if (Objects.isNull(authentication) || !authentication.isAuthenticated()) {
