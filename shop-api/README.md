@@ -22,4 +22,4 @@ mvn spring-boot:run "-Dspring-boot.run.profiles=local"
 ## Run the project via docker compose
 
 ```sh
-docker compose up
+docker-compose up
